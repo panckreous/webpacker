@@ -61,6 +61,7 @@ const getModulePaths = () => {
 
 const getBaseConfig = () =>
   new ConfigObject({
+    mode: 'production',
     output: {
       filename: '[name]-[chunkhash].js',
       chunkFilename: '[name]-[chunkhash].chunk.js',
