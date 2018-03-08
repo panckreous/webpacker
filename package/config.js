@@ -8,8 +8,13 @@ const env = require('./env')
 const defaultConfigPath = require.resolve('../lib/install/config/webpacker.yml')
 const configPath = resolve('config', 'webpacker.yml')
 
+const getDefaultConfig = () => {
+  const defaultConfig = safeLoad(readFileSync(defaultConfigPath), 'utf8')
+  return defaultConfig[env] || defaultConfig.default
+}
+
 const getConfig = () => {
-  const defaults = safeLoad(readFileSync(defaultConfigPath), 'utf8')[env]
+  const defaults = getDefaultConfig()
   const app = safeLoad(readFileSync(configPath), 'utf8')[env]
 
   if (isArray(app.extensions) && app.extensions.length) {

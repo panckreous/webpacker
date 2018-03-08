@@ -78,7 +78,7 @@ class Webpacker::Compiler
     end
 
     def webpack_env
-      env.merge("NODE_ENV"                    => @webpacker.env,
+      env.merge("NODE_ENV"                    => ENV["NODE_ENV"] ||= "production",
                 "WEBPACKER_ASSET_HOST"        => ActionController::Base.helpers.compute_asset_host,
                 "WEBPACKER_RELATIVE_URL_ROOT" => ActionController::Base.relative_url_root)
     end
